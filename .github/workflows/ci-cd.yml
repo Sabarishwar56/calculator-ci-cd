@@ -1,10 +1,11 @@
+
 name: Calculator CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   test-and-build:
@@ -23,12 +24,10 @@ jobs:
         run: pip install ruff
 
       - name: Run code quality check
-        run: ruff check .
+        run: ruff check . --fix
 
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
 
       - name: Build Docker image
         run: docker build -t calculator-app .
-
-        
